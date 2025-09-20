@@ -1,3 +1,5 @@
+{% assign main_menu_linklist = linklists[section.settings.menu].links %}
+
 <div class="relative bg-white" x-data="{ mobileMenuOpen: false }">
   <div class="mx-auto px-4 sm:px-6">
     <div class="flex justify-between items-center py-6 md:justify-start md:space-x-10">
@@ -24,7 +26,7 @@
 
       <!-- NAVIGATION MENU -->
       <nav x-data="{ open: false }" class="hidden md:flex space-x-10">
-        {% for link in linklists.main-menu.links %}
+        {% for link in main_menu_linklist %}
           {% if link.links != blank %}
             <div class="relative">
               <button
@@ -94,7 +96,7 @@
         <!-- NAVIGATION LINKS FOR MOBILE MENU -->
         <div class="pt-3">
           <nav class="grid gap-y-7">
-            {% for link in linklists.main-menu.links %}
+            {% for link in main_menu_linklist %}
               {% assign link_handle = link.handle | replace: '-', '_' %}
               {% if link.links != blank %}
                 <div x-data="{ {{link_handle}}: false }" class="relative">
@@ -143,7 +145,14 @@
         "label": "Title",
         "default": "Header",
         "info": "This is the title of the mobile menu window"
+      }, {
+        "type": "link_list",
+        "id": "menu",
+        "label": "Header Menu",
+        "default": "main-menu"
+
       }
     ]
+
   }
 {% endschema %}
