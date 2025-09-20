@@ -225,6 +225,9 @@
   .ml-4 {
     margin-left: calc(var(--spacing) * 4);
   }
+  .contents {
+    display: contents;
+  }
   .flex {
     display: flex;
   }
@@ -236,6 +239,9 @@
   }
   .inline-flex {
     display: inline-flex;
+  }
+  .table {
+    display: table;
   }
   .size-4 {
     width: calc(var(--spacing) * 4);
@@ -266,6 +272,9 @@
   .max-w-md {
     max-width: var(--container-md);
   }
+  .border-collapse {
+    border-collapse: collapse;
+  }
   .origin-top-left {
     transform-origin: top left;
   }
@@ -274,6 +283,9 @@
   }
   .cursor-pointer {
     cursor: pointer;
+  }
+  .resize {
+    resize: both;
   }
   .items-center {
     align-items: center;
@@ -404,6 +416,9 @@
   .text-gray-900 {
     color: var(--color-gray-900);
   }
+  .underline {
+    text-decoration-line: underline;
+  }
   .shadow-lg {
     --tw-shadow: 0 10px 15px -3px var(--tw-shadow-color, rgb(0 0 0 / 0.1)), 0 4px 6px -4px var(--tw-shadow-color, rgb(0 0 0 / 0.1));
     box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
@@ -414,6 +429,10 @@
   }
   .ring-black {
     --tw-ring-color: var(--color-black);
+  }
+  .outline {
+    outline-style: var(--tw-outline-style);
+    outline-width: 1px;
   }
   .hover\:bg-gray-50 {
     &:hover {
@@ -617,6 +636,11 @@
   inherits: false;
   initial-value: 0 0 #0000;
 }
+@property --tw-outline-style {
+  syntax: "*";
+  inherits: false;
+  initial-value: solid;
+}
 @property --tw-translate-x {
   syntax: "*";
   inherits: false;
@@ -658,6 +682,7 @@
       --tw-ring-offset-width: 0px;
       --tw-ring-offset-color: #fff;
       --tw-ring-offset-shadow: 0 0 #0000;
+      --tw-outline-style: solid;
       --tw-translate-x: 0;
       --tw-translate-y: 0;
       --tw-translate-z: 0;
