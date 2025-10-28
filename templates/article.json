@@ -2,7 +2,13 @@
   "name": "Template Article",
   "sections": {
     "template": {
-      "type": "template-article"
+      "type": "template-article",
+      "blocks": {
+        "title": {
+          "type": "article_title"
+        }
+      },
+      "block_order": ["title"]
     }
   },
   "order": ["template"]
