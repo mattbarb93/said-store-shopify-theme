@@ -1,18 +1,29 @@
-<h1>{{ article.title }}</h1>
+{% for block in section.blocks %}
+  {% case block.type %}
+    {% when 'article_title' %}
+      <h1>{{ article.title }}</h1>
 
-{% if section.settings.enable_author %}
-  <small>{{ article.author }}</small>
-{% endif %}
+    {% when 'article_author' %}
+      {% if section.settings.enable_author %}
+        <small>{{ article.author }}</small>
+      {% endif %}
 
-{% if section.settings.enable_published_date %}
-  <time datetime="{{article.published_at | date: '%Y-%m-%d' }}">{{ article.published_at | date: '%Y-%m-%d' }}</time>
-{% endif %}
+    {% when 'artile_published_date' %}
+      {% if section.settings.enable_published_date %}
+        <time datetime="{{article.published_at | date: '%Y-%m-%d' }}">{{ article.published_at | date: '%Y-%m-%d' }}</time>
+      {% endif %}
 
-{% comment %} You need to specify either a width or height parameter. If neither are specified, then an error is returned. {% endcomment %}
-<img src="{{article.image |  image_url: width: 600, height: 600 }}" alt="{{ article.image.alt }}">
+    {% when 'featured_image' %}
+      {% comment %} You need to specify either a width or height parameter. If neither are specified, then an error is returned. {% endcomment %}
+      <img src="{{article.image |  image_url: width: 600, height: 600 }}" alt="{{ article.image.alt }}">
 
-<div>
-  {{ article.content }}</div>
+    {% when 'article_content' %}
+      <div>{{ article.content }}</div>
+
+      {% else %}
+  {% endcase %}
+{% endfor %}
+
 
 {% schema %}
   {
