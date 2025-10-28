@@ -1,9 +1,11 @@
-{% comment %} {% paginate blog.articles by 5 %}
-  
+{% paginate blog.articles by 5 %}
+
   <h1>{{ blog.title }}</h1>
   {% for article in blog.articles %}
     <div>
-      <h2><a href="{{ article.url }}">{{ article.title }}</a></h2>
+      <h2>
+        <a href="{{ article.url }}">{{ article.title }}</a>
+      </h2>
       {{ article.author }} @ {{ article.created_at }}
       <div>
         {% if article.excerpt.size > 0 %}
@@ -14,9 +16,9 @@
       </div>
     </div>
   {% endfor %}
-  
+
   {% if paginate.pages > 1 %}
     {{ paginate | default_pagination }}
   {% endif %}
-  
-{% endpaginate %} {% endcomment %}
+
+{% endpaginate %}
