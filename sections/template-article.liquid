@@ -8,7 +8,7 @@
         <small>{{ article.author }}</small>
       {% endif %}
 
-    {% when 'artile_published_date' %}
+    {% when 'article_published_date' %}
       {% if section.settings.enable_published_date %}
         <time datetime="{{article.published_at | date: '%Y-%m-%d' }}">{{ article.published_at | date: '%Y-%m-%d' }}</time>
       {% endif %}
