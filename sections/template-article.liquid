@@ -8,8 +8,8 @@
   <time datetime="{{article.published_at | date: '%Y-%m-%d' }}">{{ article.published_at | date: '%Y-%m-%d' }}</time>
 {% endif %}
 
-
-<img src="{{article.image |  image_url: 'dynamic_width' }}" alt="{{ article.image.alt }}">
+{% comment %} You need to specify either a width or height parameter. If neither are specified, then an error is returned. {% endcomment %}
+<img src="{{article.image |  image_url: width: 600, height: 600 }}" alt="{{ article.image.alt }}">
 
 <div>
   {{ article.content }}</div>
