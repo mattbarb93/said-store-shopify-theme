@@ -72,6 +72,10 @@
                 <p class="text-sm">{{ comment.content }}</p>
               </div>
             {% endfor %}
+
+            {% if paginate.pages > 1 %}
+              {{ paginate | default_pagination }}
+            {% endif %}
           {% endpaginate %}
         </div>
       {% else %}
