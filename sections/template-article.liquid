@@ -1,73 +1,111 @@
-{% for block in section.blocks %}
-  {% case block.type %}
-    {% when 'article_title' %}
-      <h1>{{ article.title }}</h1>
-
-    {% when 'article_author' %}
-      {% if section.settings.enable_author %}
-        <small>{{ article.author }}</small>
-      {% endif %}
-
-    {% when 'article_published_date' %}
-      {% if section.settings.enable_published_date %}
-        <time datetime="{{article.published_at | date: '%Y-%m-%d' }}">{{ article.published_at | date: '%Y-%m-%d' }}</time>
-      {% endif %}
-
-    {% when 'featured_image' %}
-      {% comment %} You need to specify either a width or height parameter. If neither are specified, then an error is returned. {% endcomment %}
-      <img src="{{article.image |  image_url: width: 600, height: 600 }}" alt="{{ article.image.alt }}">
-
-    {% when 'article_content' %}
-      <div>{{ article.content }}</div>
-
-      {% else %}
-  {% endcase %}
-{% endfor %}
+<article class="py-8">
+  {% for block in section.blocks %}
+    {% case block.type %}
+      {% when 'article_title' %}
+        <div class="flex items-center justify-center">
+          <div class="max-w-7xl text-center">
+            <a href="{{blog.url}}" class="text-base uppercase text-gray-500 hover:text-gray-900 font-bold">{{ blog.title }}</a>
+            <h1 class="text-4xl md:text-6xl font-medium">{{ article.title }}</h1>
+          </div>
+        </div>
 
 
-{% schema %}
-  {
-    "name": "Template Article",
-    "settings": [
-      {
-        "type": "checkbox",
-        "id": "enable_author",
-        "default": true,
-        "label": "Display Author Name"
+      {% when 'article_author' %}
+        <div class="flex items-center justify-center">
+          <div class="max-w-7xl text-center">
+            {% if section.settings.enable_author %}
+              <small>{{ article.author }}</small>
+            {% endif %}
+          </div>
+        </div>
 
-      }, {
-        "type": "checkbox",
-        "id": "enable_published_date",
-        "default": true,
-        "label": "Display Published Date"
-      }
 
-    ],
-    "blocks": [
-      {
-        "type": "article_title",
-        "name": "Title",
-        "limit": 1
-      },
-      {
-        "type": "article_author",
-        "name": "Author",
-        "limit": 1
-      },
-      {
-        "type": "article_published_date",
-        "name": "Published Date",
-        "limit": 1
-      },
-      {
-        "type": "featured_image",
-        "name": "Thumbnail",
-        "limit": 1
-      }, {
-        "type": "article_content",
-        "name": "Content",
-        "limit": 1
-      }
-    ]
-  }
-{% endschema %}
+      {% when 'article_published_date' %}
+        <div class="flex items-center justify-center">
+          <div class="max-w-7xl text-center">
+            {% if section.settings.enable_published_date %}
+              <time datetime="{{article.published_at | date: '%Y-%m-%d' }}">{{ article.published_at | date: format: 'on_date' }}</time>
+            {% endif %}
+          </div>
+        </div>
+
+
+      {% when 'featured_image' %}
+        <div class="max-w-7xl bg-blue-100 rounded-lg mx-2 md:mx-auto auto overflow-hidden my-4">
+          {% if article.image != blank %}
+            {% comment %} You need to specify either a width or height parameter. If neither are specified, then an error is returned. {% endcomment %}
+            <img
+              class="w-full h-80 md:h-96 object-cover object-center"
+              src="{{article.image |  image_url: width: 900, height: 900 }}"
+              alt="{{ article.image.alt }}">
+          {% else %}
+            {% assign placeholder_image = 'lifestyle-2' %}
+            {{ placeholder_image | placeholder_svg_tag: 'w-ull h-80 md:h-96 object-cover object-center p-5' }}
+          {% endif %}
+        </div>
+
+
+      {% when 'article_content' %}
+        <div class="flex items-center justify-center ">
+          <div class="max-w-7xl">
+            {{ article.content }}</div>
+        </div>
+
+
+    {% else %}
+      {% endcase %}
+    {% endfor %}
+
+  </article>
+
+  {% if blog.comments_enabled? %}
+    Hello World
+  {% endif %}
+
+
+  {% schema %}
+    {
+      "name": "Template Article",
+      "settings": [
+        {
+          "type": "checkbox",
+          "id": "enable_author",
+          "default": true,
+          "label": "Display Author Name"
+
+        }, {
+          "type": "checkbox",
+          "id": "enable_published_date",
+          "default": true,
+          "label": "Display Published Date"
+        }
+
+      ],
+      "blocks": [
+        {
+          "type": "article_title",
+          "name": "Title",
+          "limit": 1
+        },
+        {
+          "type": "article_author",
+          "name": "Author",
+          "limit": 1
+        },
+        {
+          "type": "article_published_date",
+          "name": "Published Date",
+          "limit": 1
+        },
+        {
+          "type": "featured_image",
+          "name": "Thumbnail",
+          "limit": 1
+        }, {
+          "type": "article_content",
+          "name": "Content",
+          "limit": 1
+        }
+      ]
+    }
+  {% endschema %}
