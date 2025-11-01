@@ -71,32 +71,65 @@
             </div>
           </div>
           <div class="w-full my-4 md:w-80">
-            <h3 class="text-xl">Subtotal: {{ cart.total_price | money }}</h3>
-            <div class="my-2">
-              <button
-                name="update"
-                type="submit"
-                class="w-full p-3 border border-gray-600 text-gray-600 font-medium hover:bg-gray-600 hover:text-white">Update</button>
-            </div>
-            <div class="my-2">
-              <button
-                name="checkout"
-                type="submit"
-                class="w-full p-3 border border-gray-600 font-medium bg-gray-600 text-white">Checkout</button>
+            {% for block in section.blocks %}
+              {% case block.type %}
+                {% when 'subtotal' %}
+                  <h3 class="text-xl">Subtotal: {{ cart.total_price | money }}</h3>
+                {% when 'update_button' %}
+                  <div class="my-2">
+                    <button
+                      name="update"
+                      type="submit"
+                      class="w-full p-3 border border-gray-600 text-gray-600 font-medium hover:bg-gray-600 hover:text-white">Update</button>
+                  </div>
+                {% when 'checkout_button' %}
+                  <div class="my-2">
+                    <button
+                      name="checkout"
+                      type="submit"
+                      class="w-full p-3 border border-gray-600 font-medium bg-gray-600 text-white">Checkout</button>
+                  </div>
+              {% else %}
+
+                {% endcase %}
+              {% endfor %}
+
+
             </div>
           </div>
-        </div>
-      </form>
-    </div>
-  </div>
-{% else %}
-  <div class="max-w-6xl h-60 my-4 mx-auto flex items-center justify-center">
-    <div class="text-center">
-      <h1 class="text-3xl my-4">Your cart is Empty!</h1>
-      <div class="my-4 py-4">
-        <a href="{{routes.all_products_collection_url}}" class="border border-gray-600 text-white bg-gray-600 px-8 py-3">Continue Shopping</a>
+        </form>
       </div>
     </div>
-  </div>
+  {% else %}
+    <div class="max-w-6xl h-60 my-4 mx-auto flex items-center justify-center">
+      <div class="text-center">
+        <h1 class="text-3xl my-4">Your cart is Empty!</h1>
+        <div class="my-4 py-4">
+          <a href="{{routes.all_products_collection_url}}" class="border border-gray-600 text-white bg-gray-600 px-8 py-3">Continue Shopping</a>
+        </div>
+      </div>
+    </div>
 
-{% endif %}
+  {% endif %}
+
+  {% schema %}
+    {
+      "name": "Template Cart",
+      "blocks": [
+        {
+          "type": "subtotal",
+          "name": "Subtotal",
+          "limit": 1
+        }, {
+          "type": "update_button",
+          "name": "Update Button",
+          "limit": 1
+        }, {
+          "type": "checkout_button",
+          "name": "Checkout Button",
+          "limit": 1
+        }
+      ],
+      "settings": []
+    }
+  {% endschema %}
