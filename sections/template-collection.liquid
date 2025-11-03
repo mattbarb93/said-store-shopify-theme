@@ -1,16 +1,42 @@
-{% paginate collection.products by 12 %}
-  {% for product in collection.products %}
-    {% if product.featured_image %}
-      <img src="{{ product.featured_image |  image_url: height: 500 }}" alt="{{product.featured_image.alt}}">
-    {% endif %}
+<div class="px-4 py-8">
+  {% paginate collection.products by section.settings.number_of_products_per_page %}
+    <h1 class="text-3xl text-center">{{ collection.title }}</h1>
 
-    <span>{{ product.vendor }}</span>
-    <a href="{{product.url}}">{{ product.title }}</a>
-    <p>{{ product.price | money }}</p>
-  {% else %}
-    <p>There are no products inside this collection</p>
-  {% endfor %}
+    <div class="max-w-6xl mx-auto">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        {% for product in collection.products %}
+          {% render 'product-card'
+            , product_product: product %}
 
-  {% render 'pagination'
-    , pagination: paginate %}
-{% endpaginate %}
+        {% else %}
+          <p>There are no products inside this collection</p>
+        {% endfor %}
+
+
+      </div>
+    </div>
+
+    {% render 'pagination'
+      , pagination: paginate %}
+  {% endpaginate %}
+</div>
+
+{% schema %}
+  {
+    "name": "Template Collection",
+    "settings": [
+      {
+        "type": "number",
+        "id": "number_of_products_per_page",
+        "default": 6,
+        "label": "Number of products per page"
+      }, {
+        "type": "checkbox",
+        "id": "display_vendor_name",
+        "default": true,
+        "label": "Display Vendor's Name"
+      }
+
+    ]
+  }
+{% endschema %}
