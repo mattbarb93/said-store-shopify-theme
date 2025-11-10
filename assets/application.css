@@ -373,6 +373,9 @@
   .h-screen {
     height: 100vh;
   }
+  .w-1\/2 {
+    width: calc(1/2 * 100%);
+  }
   .w-5 {
     width: calc(var(--spacing) * 5);
   }
@@ -402,9 +405,6 @@
   }
   .flex-1 {
     flex: 1;
-  }
-  .flex-auto {
-    flex: auto;
   }
   .table-auto {
     table-layout: auto;
