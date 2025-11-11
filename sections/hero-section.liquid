@@ -1,6 +1,20 @@
-<div>
-  <h1>{{ section.settings.main-message }}</h1>
-  <h2>{{ section.settings.sub-message }}</h2>
+<div class="max-w-6xl mx-auto my-8">
+
+  <div class="flex flex-column items-center w-full my-3">
+    <h1>{{ section.settings.main_message }}</h1>
+    <h2>{{ section.settings.sub_message }}</h2>
+    {% if section.settings.display_button %}
+      <button>{{ section.settings.button_name }}</button>
+    {% endif %}
+  </div>
+
+  {% if section.settings.hero_image %}
+    <img class="w-full h-80 md:h-96 object-cover object-center opacity-75" src="{{ section.settings.hero_image | image_url: width: 1000 | image_tag }}" />
+
+  {% else %}
+    {{ 'product-1' | placeholder_svg_tag: 'w-full h-full object-cover bg-gray-100' }}
+  {% endif %}
+
 </div>
 
 {% schema %}
@@ -8,13 +22,33 @@
     "name": "Hero Image",
     "settings": [
       {
+        "type": "image_picker",
+        "id": "hero_image",
+        "label": "Background Image"
+      },
+      {
         "type": "text",
-        "id": "main-message",
+        "id": "main_message",
         "label": "Main Message"
+      },
+      {
+        "type": "text",
+        "id": "sub_message",
+        "label": "Sub Message"
+      },
+      {
+        "type": "checkbox",
+        "id": "display_button",
+        "default": true,
+        "label": "Display Button"
       }, {
         "type": "text",
-        "id": "sub-message",
-        "label": "Sub Message"
+        "id": "button_name",
+        "label": "Button Message"
+      }, {
+        "type": "url",
+        "id": "button_link",
+        "label": "Button link"
       }
     ],
     "presets": [
