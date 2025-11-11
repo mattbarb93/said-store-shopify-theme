@@ -1,11 +1,37 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "featured-collection": {
       "type": "featured-collection",
       "settings": {
-        "featured_collection": "all"
+        "title": "Featured Collection",
+        "featured_collection": "all",
+        "number_of_products_to_show": 4
+      }
+    },
+    "hero_section_ebKEFA": {
+      "type": "hero-section",
+      "name": "Hero Section",
+      "settings": {
+        "hero_image": "shopify://shop_images/pexels-ogproductionz-15606973.jpg",
+        "main_message": "Said's clothing store",
+        "sub_message": "The best in Egyptian Clothing",
+        "display_button": true,
+        "button_name": "Buy Now!",
+        "button_link": "shopify://collections/fall-collection"
       }
     }
   },
-  "order": ["featured-collection"]
+  "order": [
+    "featured-collection",
+    "hero_section_ebKEFA"
+  ]
 }
