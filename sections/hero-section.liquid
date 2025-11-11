@@ -1,0 +1,27 @@
+<div>
+  <h1>{{ section.settings.main-message }}</h1>
+  <h2>{{ section.settings.sub-message }}</h2>
+</div>
+
+{% schema %}
+  {
+    "name": "Hero Image",
+    "settings": [
+      {
+        "type": "text",
+        "id": "main-message",
+        "label": "Main Message"
+      }, {
+        "type": "text",
+        "id": "sub-message",
+        "label": "Sub Message"
+      }
+    ],
+    "presets": [
+      {
+        "name": "Hero Section"
+      }
+    ]
+
+  }
+{% endschema %}
