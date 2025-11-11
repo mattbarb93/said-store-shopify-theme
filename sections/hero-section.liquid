@@ -1,19 +1,24 @@
 <div class="max-w-6xl mx-auto my-8">
 
-  <div class="flex flex-column items-center w-full my-3">
-    <h1>{{ section.settings.main_message }}</h1>
-    <h2>{{ section.settings.sub_message }}</h2>
-    {% if section.settings.display_button %}
-      <button>{{ section.settings.button_name }}</button>
+  <div class="flex flex-column items-center w-full my-3 relative">
+    {% if section.settings.hero_image %}
+      <img class="w-full h-80 md:h-96 object-cover object-center brightness-50 shadow-lg" src="{{ section.settings.hero_image | image_url: width: 1000 }}">
+
+    {% else %}
+      {{ 'product-1' | placeholder_svg_tag: 'w-full h-full object-cover bg-gray-100' }}
     {% endif %}
+    <div class="flex flex-col justify-center items-center absolute object-center left-1/2 -translate-x-1/2  ">
+      <h1 class="text-3xl my-2 text-white uppercase">{{ section.settings.main_message }}</h1>
+      <h2 class="text-xl my-2 text-white">{{ section.settings.sub_message }}</h2>
+      {% if section.settings.display_button %}
+        <button class="w-full p-3 border border-white text-white font-medium hover:bg-white hover:text-black rounded-md">
+          <a href="{{section.settings.button_link}}">{{ section.settings.button_name }}</a>
+        </button>
+      {% endif %}
+    </div>
+
   </div>
 
-  {% if section.settings.hero_image %}
-    <img class="w-full h-80 md:h-96 object-cover object-center opacity-75" src="{{ section.settings.hero_image | image_url: width: 1000 | image_tag }}" />
-
-  {% else %}
-    {{ 'product-1' | placeholder_svg_tag: 'w-full h-full object-cover bg-gray-100' }}
-  {% endif %}
 
 </div>
 
