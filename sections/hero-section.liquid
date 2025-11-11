@@ -2,7 +2,7 @@
 
   <div class="flex flex-column items-center w-full my-3 relative">
     {% if section.settings.hero_image %}
-      <img class="w-full h-80 md:h-96 object-cover object-center brightness-50 shadow-lg" src="{{ section.settings.hero_image | image_url: width: 1000 }}">
+      <img class="w-full h-80 md:h-96 object-cover object-center brightness-50 shadow-xl" src="{{ section.settings.hero_image | image_url: width: 1000 }}">
 
     {% else %}
       {{ 'product-1' | placeholder_svg_tag: 'w-full h-full object-cover bg-gray-100' }}
