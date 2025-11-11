@@ -8,8 +8,8 @@
       {{ 'product-1' | placeholder_svg_tag: 'w-full h-full object-cover bg-gray-100' }}
     {% endif %}
     <div class="flex flex-col justify-center items-center absolute object-center left-1/2 -translate-x-1/2  ">
-      <h1 class="text-3xl my-2 text-white uppercase">{{ section.settings.main_message }}</h1>
-      <h2 class="text-xl my-2 text-white">{{ section.settings.sub_message }}</h2>
+      <h1 class="text-3xl my-2 text-white uppercase text-center">{{ section.settings.main_message }}</h1>
+      <h2 class="text-xl my-2 text-white text-center">{{ section.settings.sub_message }}</h2>
       {% if section.settings.display_button %}
         <button class="w-full p-3 border border-white text-white font-medium hover:bg-white hover:text-black rounded-md">
           <a href="{{section.settings.button_link}}">{{ section.settings.button_name }}</a>
